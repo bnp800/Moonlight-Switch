@@ -405,6 +405,7 @@ GamepadState MoonlightInputManager::getControllerState(int controllerNum,
 }
 
 void MoonlightInputManager::beginStreamingSession() {
+    // Controller capabilities must be announced again for each connection.
     lastControllerCount = -1;
     for (auto& state : lastGamepadStates)
         state = {};
@@ -412,7 +413,6 @@ void MoonlightInputManager::beginStreamingSession() {
 }
 
 void MoonlightInputManager::handleControllers(bool specialKey) {
-
     auto controllersCount = brls::Application::getPlatform()
                             ->getInputManager()
                             ->getControllersConnectedCount();
