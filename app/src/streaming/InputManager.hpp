@@ -53,6 +53,7 @@ class MoonlightInputManager : public Singleton<MoonlightInputManager> {
     MoonlightInputManager();
     void dropInput();
     void handleInput(bool ignoreTouch = false);
+    void beginStreamingSession();
     void handleRumble(unsigned short controller, unsigned short lowFreqMotor, unsigned short highFreqMotor);
     void handleRumbleTriggers(unsigned short controller, unsigned short lowFreqMotor, unsigned short highFreqMotor);
     void updateTouchScreenPanDelta(brls::PanGestureStatus panStatus);
@@ -70,6 +71,7 @@ class MoonlightInputManager : public Singleton<MoonlightInputManager> {
 
     RumbleValues rumbleCache[GAMEPADS_MAX];
     GamepadState lastGamepadStates[GAMEPADS_MAX];
+    int lastControllerCount = -1;
     brls::ControllerButton mappingButtons[brls::_BUTTON_MAX];
     std::optional<brls::PanGestureStatus> panStatus;
     std::map<uint32_t, bool> activeTouchIDs;
